@@ -5,7 +5,7 @@ module.exports = class User extends Sequelize.Model {
       return super.init(
          {
             name: {
-               type: Sequelize.STRIN(20),
+               type: Sequelize.STRING(20),
                allowNull: false,
                unique: true,
             },
@@ -22,8 +22,8 @@ module.exports = class User extends Sequelize.Model {
                allowNull: true,
             },
             created_at: {
-               allowNull: Sequelize.DATE,
                type: Sequelize.DATE,
+               allowNull: false,
                defaultValue: Sequelize.NOW,
             },
          },
@@ -39,7 +39,9 @@ module.exports = class User extends Sequelize.Model {
          },
       );
    }
-   static associations(db) {
-      db.User.hasMany(db.Commnet, { foreignKey: 'commenter', sourceKey: 'id' });
+
+   static associate(db) {
+      db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id' }); //sourceKey : 나 foreignKey : 너 1:N
+      //as로 모델명 변경 가능 ex) as: 'new modelName'
    }
 };
