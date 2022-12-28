@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
    try {
-      console.log(req.user);
+      res.redirect('/');
    } catch (err) {
       console.log(err);
    }
