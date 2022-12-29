@@ -8,7 +8,6 @@ exports.afterUploadImage = (req, res) => {
 exports.uploadPost = async (req, res, next) => {
    //req.body.content, req.body.url
    try {
-      console.log('여기까지오냐 ?', req.body.content, req.body.url, req.user.id);
       const post = await Post.create({
          content: req.body.content,
          img: req.body.url,
