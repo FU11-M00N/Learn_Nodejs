@@ -1,6 +1,8 @@
 {% extends 'layout.html' %} {% block content %}
+
 <div class="timeline">
    {% if user %}
+
    <div>
       <form id="twit-form" action="/post" method="post" enctype="multipart/form-data">
          <div class="input-group">
@@ -41,6 +43,7 @@
       {% endfor %}
    </div>
 </div>
+
 {% endblock %} {% block script %}
 <script>
    if (document.getElementById('img')) {
@@ -83,6 +86,7 @@
    document.querySelectorAll('.twit-unfollow').forEach(function (tag) {
       tag.addEventListener('click', function () {
          const myId = document.querySelector('#my-id');
+         alert(myId);
          if (myId) {
             const userId = tag.parentNode.querySelector('.twit-user-id').value;
             if (userId !== myId.value) {

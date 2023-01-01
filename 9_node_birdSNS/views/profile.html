@@ -1,4 +1,5 @@
 {% extends 'layout.html' %} {% block content %}
+
 <div class="timeline">
    <div class="followings half">
       <h2>팔로잉 목록</h2>
@@ -13,4 +14,20 @@
       {% endfor %} {% endif %}
    </div>
 </div>
+
+<input type="text" id="update-nick-value" placeholder="ex) 홍길동" />
+<input type="button" value="닉네임 변경" name="nick" id="update-nick-btn" class="btn" />
+<script>
+   document.getElementById('update-nick-btn').addEventListener('click', function () {
+      const data = document.getElementById('update-nick-value').value;
+      axios
+         .patch(`/user`, { nick: data })
+         .then(() => {
+            location.reload();
+         })
+         .catch(err => {
+            console.error(err);
+         });
+   });
+</script>
 {% endblock %}
